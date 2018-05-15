@@ -11,6 +11,10 @@ print_in_hex(uint8_t byte) {
     cout << nibble_to_hex(byte >> 4);
     cout << nibble_to_hex(byte & 0b00001111);
 }
+const uint8_t*
+as_bytes(const void* data) {
+    return reinterpret_cast<const uint8_t*>(data);
+}
 void
 print_in_hex(const void* data, size_t size) {
     const uint8_t* bytes = as_bytes(data);
