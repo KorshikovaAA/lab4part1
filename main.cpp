@@ -40,7 +40,8 @@ bit_digit(uint8_t byte, uint8_t bit) {
 void
 print_in_binary(uint8_t byte) {
     for (uint8_t bit = 7; bit > 0; bit--) {
-        cout << bit_digit(byte, bit);
+        cout << bit_digit (byte, bit);
+        cout << bit_digit (byte, 0);
     }
 }
 void
@@ -82,6 +83,54 @@ main() {
     cout << '\n';
     uint8_t u8=3;
     print_in_binary(&u8, sizeof (u8));
+
+    uint16_t operator_1, operator_2, res;
+    char operator_0;
+
+
+    cin >>operator_1>>operator_0>>operator_2;
+    if (operator_0== '&'){
+        res=operator_1&operator_2;
+        print_in_hex(&operator_1,sizeof(uint16_t));
+               cout << '&';
+        print_in_hex(&operator_2,sizeof(uint16_t));
+        cout << '=';
+        print_in_hex(&res,sizeof(uint16_t));
+        cout << '/n';
+        print_in_binary(&operator_1,sizeof(uint16_t));
+        cout << '&';
+        print_in_binary(&operator_2,sizeof(uint16_t));
+        cout << '=';
+        print_in_binary(&res,sizeof(uint16_t));
+    }
+    if (operator_0== '|'){
+        res=operator_1|operator_2;
+        print_in_hex(&operator_1,sizeof(uint16_t));
+        cout << '|';
+        print_in_hex(&operator_2,sizeof(uint16_t));
+        cout << '=';
+        print_in_hex(&res,sizeof(uint16_t));
+        cout << '/n';
+        print_in_binary(&operator_1,sizeof(uint16_t));
+        cout << '|';
+        print_in_binary(&operator_2,sizeof(uint16_t));
+        cout << '=';
+        print_in_binary(&res,sizeof(uint16_t));
+    }
+    if (operator_0== '^'){
+        res=operator_1|operator_2;
+        print_in_hex(&operator_1,sizeof(uint16_t));
+        cout << '^';
+        print_in_hex(&operator_2,sizeof(uint16_t));
+        cout << '=';
+        print_in_hex(&res,sizeof(uint16_t));
+        cout << '/n';
+        print_in_binary(&operator_1,sizeof(uint16_t));
+        cout << '^';
+        print_in_binary(&operator_2,sizeof(uint16_t));
+        cout << '=';
+        print_in_binary(&res,sizeof(uint16_t));
+    }
 
     return 0;
 }
