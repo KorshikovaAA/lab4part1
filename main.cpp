@@ -69,6 +69,7 @@ struct Student{
 };
 int
 main() {
+    /*
     assert(nibble_to_hex(0x0) == '0');
     assert(nibble_to_hex(0x1) == '1');
     assert(nibble_to_hex(0x2) == '2');
@@ -139,6 +140,7 @@ main() {
          cout << '=';
          print_in_binary(&res,sizeof(uint16_t));
      }
+    */
 
     Student students[3] = {
             {
@@ -158,10 +160,28 @@ main() {
         cout << i << '\t' << &students[i] << "\t\t" << sizeof(students[i]);
         cout << '\n';
     }
-    cout<<"For first element of array:/n";
-    cout << "\t Address of field:"<<"\t size of filed:"<< "\t offset:\n";
-    cout << "Name:\t"<<&students[0].name;
-    cout << sizeof(students[0])<<"\t"<<offsetof(struct Student, name);
+    cout<<"For first element of array:\n";
+    cout << "\tAddress of field:"<<"\tsize of filed:"<< "\toffset:\n";
+    cout << "Name:\t"<<&students[0].name<<"\t";
+    cout << sizeof(students[0].name)<<"\t"<<offsetof(struct Student, name);
     cout <<'\n';
+
+    cout << "Year:\t"<<&students[0].year<<"\t";
+    cout << sizeof(students[0].year)<<"\t"<<offsetof(struct Student, year);
+    cout <<'\n';
+
+    cout << "Sred_ball:\t"<<&students[0].sred_ball<<"\t";
+    cout << sizeof(students[0].sred_ball)<<"\t"<<offsetof(struct Student, sred_ball);
+    cout <<'\n';
+
+    /*cout << "Sex:\t"<<&students[0].sex<<"\t";
+    cout << sizeof(students[0].sex)<<"\t"<<offsetof(struct Student, sex);
+    cout <<'\n';
+
+    cout << "Classes:\t"<<&students[0].classes<<"\t";
+    cout << sizeof(students[0].classes)<<"\t"<<offsetof(struct Student, classes);
+    cout <<'\n';
+     */
+
     return 0;
 }
