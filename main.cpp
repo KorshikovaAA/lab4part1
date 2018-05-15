@@ -69,78 +69,78 @@ struct Student{
 };
 int
 main() {
-        assert(nibble_to_hex(0x0) == '0');
-        assert(nibble_to_hex(0x1) == '1');
-        assert(nibble_to_hex(0x2) == '2');
-        assert(nibble_to_hex(0x3) == '3');
-        assert(nibble_to_hex(0x4) == '4');
-        assert(nibble_to_hex(0x5) == '5');
-        assert(nibble_to_hex(0x6) == '6');
-        assert(nibble_to_hex(0x7) == '7');
-        assert(nibble_to_hex(0x8) == '8');
-        assert(nibble_to_hex(0x9) == '9');
-        assert(nibble_to_hex(0xa) == 'a');
-        assert(nibble_to_hex(0xb) == 'b');
-        assert(nibble_to_hex(0xc) == 'c');
-        assert(nibble_to_hex(0xd) == 'd');
-        assert(nibble_to_hex(0xe) == 'e');
-        assert(nibble_to_hex(0xf) == 'f');
-   /* uint32_t u32 = 0x42;
-    cout << "u32 bytes: ";
-    print_in_hex(&u32, sizeof(u32));
-    cout << '\n';
-    uint8_t u8=3;
-    print_in_binary(&u8, sizeof (u8));
+    assert(nibble_to_hex(0x0) == '0');
+    assert(nibble_to_hex(0x1) == '1');
+    assert(nibble_to_hex(0x2) == '2');
+    assert(nibble_to_hex(0x3) == '3');
+    assert(nibble_to_hex(0x4) == '4');
+    assert(nibble_to_hex(0x5) == '5');
+    assert(nibble_to_hex(0x6) == '6');
+    assert(nibble_to_hex(0x7) == '7');
+    assert(nibble_to_hex(0x8) == '8');
+    assert(nibble_to_hex(0x9) == '9');
+    assert(nibble_to_hex(0xa) == 'a');
+    assert(nibble_to_hex(0xb) == 'b');
+    assert(nibble_to_hex(0xc) == 'c');
+    assert(nibble_to_hex(0xd) == 'd');
+    assert(nibble_to_hex(0xe) == 'e');
+    assert(nibble_to_hex(0xf) == 'f');
+     uint32_t u32 = 0x42;
+     cout << "u32 bytes: ";
+     print_in_hex(&u32, sizeof(u32));
+     cout << '\n';
+     uint8_t u8=3;
+     print_in_binary(&u8, sizeof (u8));
 
-    uint16_t operator_1, operator_2, res;
-    char operator_0;
+     uint16_t operator_1, operator_2, res;
+     char operator_0;
 
 
-    cin >>operator_1>>operator_0>>operator_2;
-    if (operator_0== '&'){
-        res=operator_1&operator_2;
-        print_in_hex(&operator_1,sizeof(uint16_t));
-               cout << '&';
-        print_in_hex(&operator_2,sizeof(uint16_t));
-        cout << '=';
-        print_in_hex(&res,sizeof(uint16_t));
-        cout << '/n';
-        print_in_binary(&operator_1,sizeof(uint16_t));
-        cout << '&';
-        print_in_binary(&operator_2,sizeof(uint16_t));
-        cout << '=';
-        print_in_binary(&res,sizeof(uint16_t));
-    }
-    if (operator_0== '|'){
-        res=operator_1|operator_2;
-        print_in_hex(&operator_1,sizeof(uint16_t));
-        cout << '|';
-        print_in_hex(&operator_2,sizeof(uint16_t));
-        cout << '=';
-        print_in_hex(&res,sizeof(uint16_t));
-        cout << '/n';
-        print_in_binary(&operator_1,sizeof(uint16_t));
-        cout << '|';
-        print_in_binary(&operator_2,sizeof(uint16_t));
-        cout << '=';
-        print_in_binary(&res,sizeof(uint16_t));
-    }
-    if (operator_0== '^'){
-        res=operator_1|operator_2;
-        print_in_hex(&operator_1,sizeof(uint16_t));
-        cout << '^';
-        print_in_hex(&operator_2,sizeof(uint16_t));
-        cout << '=';
-        print_in_hex(&res,sizeof(uint16_t));
-        cout << '/n';
-        print_in_binary(&operator_1,sizeof(uint16_t));
-        cout << '^';
-        print_in_binary(&operator_2,sizeof(uint16_t));
-        cout << '=';
-        print_in_binary(&res,sizeof(uint16_t));
-    }
-*/
-    Student students[3]= {
+     cin >>operator_1>>operator_0>>operator_2;
+     if (operator_0== '&'){
+         res=operator_1&operator_2;
+         print_in_hex(&operator_1,sizeof(uint16_t));
+                cout << '&';
+         print_in_hex(&operator_2,sizeof(uint16_t));
+         cout << '=';
+         print_in_hex(&res,sizeof(uint16_t));
+         cout << '/n';
+         print_in_binary(&operator_1,sizeof(uint16_t));
+         cout << '&';
+         print_in_binary(&operator_2,sizeof(uint16_t));
+         cout << '=';
+         print_in_binary(&res,sizeof(uint16_t));
+     }
+     if (operator_0== '|'){
+         res=operator_1|operator_2;
+         print_in_hex(&operator_1,sizeof(uint16_t));
+         cout << '|';
+         print_in_hex(&operator_2,sizeof(uint16_t));
+         cout << '=';
+         print_in_hex(&res,sizeof(uint16_t));
+         cout << '/n';
+         print_in_binary(&operator_1,sizeof(uint16_t));
+         cout << '|';
+         print_in_binary(&operator_2,sizeof(uint16_t));
+         cout << '=';
+         print_in_binary(&res,sizeof(uint16_t));
+     }
+     if (operator_0== '^'){
+         res=operator_1|operator_2;
+         print_in_hex(&operator_1,sizeof(uint16_t));
+         cout << '^';
+         print_in_hex(&operator_2,sizeof(uint16_t));
+         cout << '=';
+         print_in_hex(&res,sizeof(uint16_t));
+         cout << '/n';
+         print_in_binary(&operator_1,sizeof(uint16_t));
+         cout << '^';
+         print_in_binary(&operator_2,sizeof(uint16_t));
+         cout << '=';
+         print_in_binary(&res,sizeof(uint16_t));
+     }
+
+    Student students[3] = {
             {
                     "Fam1", 2017, 4.1, 0, 7, nullptr
             },
@@ -151,5 +151,17 @@ main() {
                     "Fam3", 2017, 4.3, 0, 7, &students[0]
             }
     };
+    cout << "Adress of array:" << &students << '\n';
+    cout << "Size of array:" << sizeof(students) << '\n';
+    cout << "\tAdress of element:" << "\t Size of element:\n";
+    for (int i = 0; i < 3; i++) {
+        cout << i << '\t' << &students[i] << "\t\t" << sizeof(students[i]);
+        cout << '\n';
+    }
+    cout<<"For first element of array:/n";
+    cout << "\t Address of field:"<<"\t size of filed:"<< "\t offset:\n";
+    cout << "Name:\t"<<&students[0].name;
+    cout << sizeof(students[0])<<"\t"<<offsetof(struct Student, name);
+    cout <<'\n';
     return 0;
 }
