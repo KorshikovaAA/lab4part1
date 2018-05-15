@@ -182,6 +182,11 @@ main() {
     cout << sizeof(students[0].classes)<<"\t"<<offsetof(struct Student, classes);
     cout <<'\n';
      */
-
+cout << "Name:\n";
+cout << "Binary\n";
+    print_in_binary(&students[0].name, sizeof(students[0].name));
+    cout << "\nHex:\n";
+    print_in_hex(&students[0].name, sizeof(students[0].name));
+    cout << "\n";
     return 0;
 }
