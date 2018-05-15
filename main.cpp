@@ -59,6 +59,14 @@ print_in_binary(const void* data, size_t size) {
         }
     }
 }
+struct Student{
+    char name[17];
+    uint16_t year;
+    float sred_ball;
+    uint8_t sex:1;
+    int classes;
+    Student*starosta;
+};
 int
 main() {
         assert(nibble_to_hex(0x0) == '0');
@@ -77,7 +85,7 @@ main() {
         assert(nibble_to_hex(0xd) == 'd');
         assert(nibble_to_hex(0xe) == 'e');
         assert(nibble_to_hex(0xf) == 'f');
-    uint32_t u32 = 0x42;
+   /* uint32_t u32 = 0x42;
     cout << "u32 bytes: ";
     print_in_hex(&u32, sizeof(u32));
     cout << '\n';
@@ -131,6 +139,17 @@ main() {
         cout << '=';
         print_in_binary(&res,sizeof(uint16_t));
     }
-
+*/
+    Student students[3]= {
+            {
+                    "Fam1", 2017, 4.1, 0, 7, nullptr
+            },
+            {
+                    "Fam2", 2017, 4.2, 1, 7, &students[0]
+            },
+            {
+                    "Fam3", 2017, 4.3, 0, 7, &students[0]
+            }
+    };
     return 0;
 }
