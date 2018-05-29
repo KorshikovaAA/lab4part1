@@ -20,8 +20,6 @@ print_in_hex(const void* data, size_t size) {
     const uint8_t* bytes = as_bytes(data);
     for (size_t i = 0; i < size; i++) {
         print_in_hex(bytes[i]);
-
-        // Для удобства чтения: пробелы между байтам, по 16 байт на строку.
         if ((i + 1) % 16 == 0) {
             cout << '\n';
         }
@@ -49,8 +47,6 @@ print_in_binary(const void* data, size_t size) {
     const uint8_t* bytes = as_bytes(data);
     for (size_t i = 0; i < size; i++) {
         print_in_binary(bytes[i]);
-
-        // Для удобства чтения: пробелы между байтами, по 4 байта на строку.
         if ((i + 1) % 4 == 0) {
             cout << '\n';
         }
@@ -59,13 +55,13 @@ print_in_binary(const void* data, size_t size) {
         }
     }
 }
-struct Student{
+struct student{
     char name[17];
     uint16_t year;
     float sred_ball;
-    uint8_t sex:1;
+    uint16_t sex:1;
     int classes;
-    Student*starosta;
+    student*starosta;
 };
 int
 main() {
@@ -95,7 +91,6 @@ main() {
 
      uint16_t operator_1, operator_2, res;
      char operator_0;
-
 
      cin >>operator_1>>operator_0>>operator_2;
      if (operator_0== '&'){
@@ -141,52 +136,151 @@ main() {
          print_in_binary(&res,sizeof(uint16_t));
      }
     */
-
-    Student students[3] = {
+    student students[3] = {
             {
-                    "Fam1", 2017, 4.1, 0, 7, nullptr
+                    "Tema", 2017, 4.1, 0, 7, nullptr
             },
             {
-                    "Fam2", 2017, 4.2, 1, 7, &students[0]
+                    "Kristina", 2017, 4.2, 1, 7, &students[0]
             },
             {
-                    "Fam3", 2017, 4.3, 0, 7, &students[0]
+                    "Masha", 2017, 4.3, 0, 7, &students[0]
             }
     };
-    cout << "Adress of array:" << &students << '\n';
-    cout << "Size of array:" << sizeof(students) << '\n';
-    cout << "\tAdress of element:" << "\t Size of element:\n";
+    cout << "\nAdress of array: " << &students << '\n';
+    cout << "Size of array: " << sizeof(students) << '\n';
+    cout << "el."<<"\tAdress of element:" << "\t Size of element:\n";
     for (int i = 0; i < 3; i++) {
-        cout << i << '\t' << &students[i] << "\t\t" << sizeof(students[i]);
-        cout << '\n';
+        cout << i << '\t' << &students[i] << "\t\t\t" << sizeof(students[i]) << "\n";
     }
-    cout<<"For first element of array:\n";
-    cout << "\tAddress of field:"<<"\tsize of filed:"<< "\toffset:\n";
-    cout << "Name:\t"<<&students[0].name<<"\t";
-    cout << sizeof(students[0].name)<<"\t"<<offsetof(struct Student, name);
-    cout <<'\n';
+    cout << "For first element of array:\n";
+    cout << "\t\tAddress of field:" << "\t size of filed:" << "\t\toffset:\n";
+    cout << "Name:    \t" << &students[0].name << "\t\t\t";
+    cout << sizeof(students[0].name) << "\t\t" << offsetof(struct student, name);
+    cout << '\n';
 
-    cout << "Year:\t"<<&students[0].year<<"\t";
-    cout << sizeof(students[0].year)<<"\t"<<offsetof(struct Student, year);
-    cout <<'\n';
+    cout << "Year:    \t" << &students[0].year << "\t\t\t";
+    cout << sizeof(students[0].year) << "\t\t" << offsetof(struct student, year);
+    cout << '\n';
 
-    cout << "Sred_ball:\t"<<&students[0].sred_ball<<"\t";
-    cout << sizeof(students[0].sred_ball)<<"\t"<<offsetof(struct Student, sred_ball);
-    cout <<'\n';
+    cout << "Sred_ball:\t" << &students[0].sred_ball << "\t\t\t";
+    cout << sizeof(students[0].sred_ball) << "\t\t"<< offsetof(struct student, sred_ball);
+    cout << '\n';
 
-    /*cout << "Sex:\t"<<&students[0].sex<<"\t";
-    cout << sizeof(students[0].sex)<<"\t"<<offsetof(struct Student, sex);
-    cout <<'\n';
+    cout << "Classes:\t" << &students[0].classes << "\t\t\t";
+    cout << sizeof(students[0].classes) << "\t\t" << offsetof(struct student, classes);
+    cout << '\n';
 
-    cout << "Classes:\t"<<&students[0].classes<<"\t";
-    cout << sizeof(students[0].classes)<<"\t"<<offsetof(struct Student, classes);
-    cout <<'\n';
-     */
-cout << "Name:\n";
-cout << "Binary\n";
+    cout << "Starosta: \t" << &students[0].starosta << "\t\t\t";
+    cout << sizeof(students[0].starosta) << "\t\t"<< offsetof(struct student, starosta);
+    cout << "\n";
+
+    cout << "\n\n\n";
+    cout << "Name:\n";
+    cout << "Binary\n";
     print_in_binary(&students[0].name, sizeof(students[0].name));
     cout << "\nHex:\n";
     print_in_hex(&students[0].name, sizeof(students[0].name));
     cout << "\n";
+
+    cout << "\n\n\n";
+    cout << "Year:\n";
+    cout << "Binary:\n";
+    print_in_binary(&students[0].year, sizeof(students[0].year));
+    cout << "\nHex:\n";
+    print_in_hex(&students[0].year, sizeof(students[0].year));
+    cout << "\n\n\n";
+
+    cout << "Sred_ball:\n";
+    cout << "Binary:\n";
+    print_in_binary(&students[0].sred_ball, sizeof(students[0].sred_ball));
+    cout << "\nHex:\n";
+    print_in_hex(&students[0].sred_ball, sizeof(students[0].sred_ball));
+    cout << "\n\n\n";
+
+    cout << "Classes:\n";
+    cout << "Binary:\n";
+    print_in_binary(&students[0].classes, sizeof(students[0].classes));
+    cout << "\nHex:\n";
+    print_in_hex(&students[0].classes, sizeof(students[0].classes));
+    cout << "\n\n\n";
+
+    cout << "Starosta:\n";
+    cout << "Binary:\n";
+    print_in_binary(&students[0].starosta, sizeof(students[0].starosta));
+    cout << "\nHex:\n";
+    print_in_hex(&students[0].starosta, sizeof(students[0].starosta));
+    cout << "\n\n\n";
+
+    /*
+    //--------------------------------
+    const size_t MAX_SIZE = 256;
+    const char* separators = " \r\n,.!?:;()-";
+    char text[MAX_SIZE];
+    cout << "Vvedite immia faila : ";
+    cin >> text;
+    if ((strchr(text, '*') != 0) || (strchr(text, '"') != 0) ||
+            (strchr(text, '<') != 0) || (strchr(text, '>') != 0) ||
+            (strchr(text, '?') != 0) || (strchr(text, '|') != 0)) {
+        cout << "Error! Zapreshennie simvoli";
+        return 1;
+    }
+    if ((strchr(text, ':') != 0) &&
+            (!(((strchr(text, ':') - text + 1) == 2) &&
+                    (((strchr(text, '\\') - text + 1) == 3) ||
+                            isalpha(1) != 0)))) {
+        cout << "Error! Necorrectnoe imya faila";
+        return 1;
+    }
+    char* lastDot = strrchr(text, '.');
+
+    if (lastDot != 0) {
+        if (strcoll(lastDot, ".txt") != 0) {
+            strcat(text, ".txt");
+        }
+    }
+    else {
+        strcat(text, ".txt");
+    }
+    ifstream ifs(text);
+    int FILE_LENGTH = 0;
+    if (ifs) {
+        ifs.seekg(0, ifs.end);
+        FILE_LENGTH = ifs.tellg();
+        ifs.seekg(0, ifs.beg);
+        char* file_content = new char[FILE_LENGTH];
+        ifs.read(file_content, FILE_LENGTH);
+        ifs.close();
+
+        cout << "Enter a string to search for (up to 255 characters):" << endl;
+        char substr[256];
+        cin >> substr;
+
+        int count = 0;
+        const char* tmp = file_content;
+        while (tmp = strstr(tmp, substr)) {
+            count++;
+            tmp++;
+        }
+        cout << "The string \"" << substr << "\" occures in the file " << text << " "
+                << count << " times." << endl;
+        delete[] file_content;
+        delete[] tmp;
+    }
+    delete[] lastDot;*/
     return 0;
 }
+    /*fgets(text, MAX_SIZE, stdin);
+    const char* start = text;
+    while (true) {
+            const size_t separator_count = strspn(start, separators);
+            start += separator_count;
+            if (start[0] == '\0') {
+               break;
+           }
+            const size_t word_length = strcspn(start, separators);
+           cout.write(start, word_length);
+            cout << '\n';
+            start += word_length; */
+
+
