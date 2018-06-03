@@ -2,7 +2,6 @@
 #include <fstream>
 #include <cassert>
 #include <iomanip>
-#include "windows.h"
 using namespace std;
 char nibble_to_hex(uint8_t i) {
     assert(0x0 <= i && i <= 0xf);
@@ -43,7 +42,7 @@ print_in_binary(uint8_t byte) {
     for (uint8_t bit = 7; bit > 0; bit--) {
         cout << bit_digit(byte, bit);
     }
-        cout << bit_digit (byte, 0);
+    cout << bit_digit (byte, 0);
 }
 void
 print_in_binary(const void* data, size_t size) {
@@ -89,9 +88,9 @@ main() {
      print_in_hex(&u32, sizeof(u32));
      cout << '\n';
      uint8_t u8=3;
-     print_in_binary(&u8, sizeof (u8));*/
+     print_in_binary(&u8, sizeof (u8));
 
-    /* uint16_t operator_1, operator_2, res;
+     uint16_t operator_1, operator_2, res;
      char operator_0;
 	 cout << "Vvedite operatori:\n";
      cin >>operator_1>>operator_0>>operator_2;
@@ -215,34 +214,34 @@ main() {
     cout << "\nHex:\n";
     print_in_hex(&students[0].starosta, sizeof(students[0].starosta));
     cout << "\n\n\n";
-	*/
+*/
     const size_t MAX_SIZE = 256;
     const char* separators = " \r\n,.!?:;()-";
     char text[MAX_SIZE];
     cout << "Vvedite nazvanie faila : ";
     cin >> text;
     if ((strchr(text, '*') != 0) || (strchr(text, '"') != 0) ||
-            (strchr(text, '<') != 0) || (strchr(text, '>') != 0) ||
-            (strchr(text, '?') != 0) || (strchr(text, '|') != 0)) {
+        (strchr(text, '<') != 0) || (strchr(text, '>') != 0) ||
+        (strchr(text, '?') != 0) || (strchr(text, '|') != 0)) {
         cout << "Error, nedopustimie simvoli v imeni faila";
         return 1;
     }
     if ((strchr(text, ':') != 0) &&
-            (!(((strchr(text, ':') - text + 1) == 2) &&
-                    (((strchr(text, '\\') - text + 1) == 3) ||
-                            isalpha(1) != 0)))) {
+        (!(((strchr(text, ':') - text + 1) == 2) &&
+           (((strchr(text, '\\') - text + 1) == 3) ||
+            isalpha(1) != 0)))) {
         cout << "Error, necorrectnoe imya faila";
         return 1;
     }
     char* last_point = strrchr(text, '.');
 
     if (last_point != 0) {
-        if (strcoll(last_point, ".txt") != 0) {
-            strcat(text, ".txt");
+        if (strcoll(last_point, ".rtf") != 0) {
+            strcat(text, ".rtf");
         }
     }
     else {
-        strcat(text, ".txt");
+        strcat(text, ".rtf");
     }
     ifstream ifs(text);
     int FILE_LENGTH = 0;
@@ -259,7 +258,7 @@ main() {
         cin >> search_str;
         int count = 0;
         const char* tmp = file_content;
-        while (tmp == strstr(tmp, search_str)) {
+        while (tmp = strstr(tmp, search_str)) {
             count++;
             tmp++;
         }
@@ -270,6 +269,3 @@ main() {
     delete[] last_point;
     return 0;
 }
-
-
-
