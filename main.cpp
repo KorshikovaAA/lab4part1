@@ -2,7 +2,7 @@
 #include <fstream>
 #include <cassert>
 #include <iomanip>
-
+#include "windows.h"
 using namespace std;
 char nibble_to_hex(uint8_t i) {
     assert(0x0 <= i && i <= 0xf);
@@ -68,7 +68,7 @@ struct student{
 };
 int
 main() {
-    assert(nibble_to_hex(0x0) == '0');
+    /*assert(nibble_to_hex(0x0) == '0');
     assert(nibble_to_hex(0x1) == '1');
     assert(nibble_to_hex(0x2) == '2');
     assert(nibble_to_hex(0x3) == '3');
@@ -89,13 +89,14 @@ main() {
      print_in_hex(&u32, sizeof(u32));
      cout << '\n';
      uint8_t u8=3;
-     print_in_binary(&u8, sizeof (u8));
+     print_in_binary(&u8, sizeof (u8));*/
 
-     uint16_t operator_1, operator_2, res;
+    /* uint16_t operator_1, operator_2, res;
      char operator_0;
-
+	 cout << "Vvedite operatori:\n";
      cin >>operator_1>>operator_0>>operator_2;
-     if (operator_0== '&'){
+     switch (operator_0){
+	 case '&':
          res=operator_1&operator_2;
          print_in_hex(&operator_1,sizeof(uint16_t));
                 cout << '&';
@@ -108,8 +109,8 @@ main() {
          print_in_binary(&operator_2,sizeof(uint16_t));
          cout << '=';
          print_in_binary(&res,sizeof(uint16_t));
-     }
-     if (operator_0== '|'){
+		 break;
+	 case '|':
          res=operator_1|operator_2;
          print_in_hex(&operator_1,sizeof(uint16_t));
          cout << '|';
@@ -122,9 +123,9 @@ main() {
          print_in_binary(&operator_2,sizeof(uint16_t));
          cout << '=';
          print_in_binary(&res,sizeof(uint16_t));
-     }
-     if (operator_0== '^'){
-         res=operator_1|operator_2;
+		 break;
+     case '^':
+         res=operator_1^operator_2;
          print_in_hex(&operator_1,sizeof(uint16_t));
          cout << '^';
          print_in_hex(&operator_2,sizeof(uint16_t));
@@ -136,6 +137,7 @@ main() {
          print_in_binary(&operator_2,sizeof(uint16_t));
          cout << '=';
          print_in_binary(&res,sizeof(uint16_t));
+		 break;
      }
 
     student students[3] = {
@@ -213,7 +215,7 @@ main() {
     cout << "\nHex:\n";
     print_in_hex(&students[0].starosta, sizeof(students[0].starosta));
     cout << "\n\n\n";
-
+	*/
     const size_t MAX_SIZE = 256;
     const char* separators = " \r\n,.!?:;()-";
     char text[MAX_SIZE];
@@ -255,7 +257,6 @@ main() {
         cout << "Enter a string to search for (up to 255 characters):" << endl;
         char search_str[256];
         cin >> search_str;
-
         int count = 0;
         const char* tmp = file_content;
         while (tmp == strstr(tmp, search_str)) {
