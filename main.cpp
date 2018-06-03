@@ -1,5 +1,8 @@
 #include <iostream>
+#include <fstream>
 #include <cassert>
+#include <iomanip>
+
 using namespace std;
 char nibble_to_hex(uint8_t i) {
     assert(0x0 <= i && i <= 0xf);
@@ -38,9 +41,9 @@ bit_digit(uint8_t byte, uint8_t bit) {
 void
 print_in_binary(uint8_t byte) {
     for (uint8_t bit = 7; bit > 0; bit--) {
-        cout << bit_digit (byte, bit);
-        cout << bit_digit (byte, 0);
+        cout << bit_digit(byte, bit);
     }
+        cout << bit_digit (byte, 0);
 }
 void
 print_in_binary(const void* data, size_t size) {
@@ -59,13 +62,12 @@ struct student{
     char name[17];
     uint16_t year;
     float sred_ball;
-    uint16_t sex:1;
+    uint8_t sex;
     int classes;
     student*starosta;
 };
 int
 main() {
-    /*
     assert(nibble_to_hex(0x0) == '0');
     assert(nibble_to_hex(0x1) == '1');
     assert(nibble_to_hex(0x2) == '2');
@@ -100,7 +102,7 @@ main() {
          print_in_hex(&operator_2,sizeof(uint16_t));
          cout << '=';
          print_in_hex(&res,sizeof(uint16_t));
-         cout << '/n';
+         cout << '\n';
          print_in_binary(&operator_1,sizeof(uint16_t));
          cout << '&';
          print_in_binary(&operator_2,sizeof(uint16_t));
@@ -114,7 +116,7 @@ main() {
          print_in_hex(&operator_2,sizeof(uint16_t));
          cout << '=';
          print_in_hex(&res,sizeof(uint16_t));
-         cout << '/n';
+         cout << '\n';
          print_in_binary(&operator_1,sizeof(uint16_t));
          cout << '|';
          print_in_binary(&operator_2,sizeof(uint16_t));
@@ -128,20 +130,20 @@ main() {
          print_in_hex(&operator_2,sizeof(uint16_t));
          cout << '=';
          print_in_hex(&res,sizeof(uint16_t));
-         cout << '/n';
+         cout << '\n';
          print_in_binary(&operator_1,sizeof(uint16_t));
          cout << '^';
          print_in_binary(&operator_2,sizeof(uint16_t));
          cout << '=';
          print_in_binary(&res,sizeof(uint16_t));
      }
-    */
+
     student students[3] = {
             {
                     "Tema", 2017, 4.1, 0, 7, nullptr
             },
             {
-                    "Kristina", 2017, 4.2, 1, 7, &students[0]
+                    "Kristina", 2017, 4.2, 0, 7, &students[0]
             },
             {
                     "Masha", 2017, 4.3, 0, 7, &students[0]
@@ -212,30 +214,28 @@ main() {
     print_in_hex(&students[0].starosta, sizeof(students[0].starosta));
     cout << "\n\n\n";
 
-    /*
-    //--------------------------------
     const size_t MAX_SIZE = 256;
     const char* separators = " \r\n,.!?:;()-";
     char text[MAX_SIZE];
-    cout << "Vvedite immia faila : ";
+    cout << "Vvedite nazvanie faila : ";
     cin >> text;
     if ((strchr(text, '*') != 0) || (strchr(text, '"') != 0) ||
             (strchr(text, '<') != 0) || (strchr(text, '>') != 0) ||
             (strchr(text, '?') != 0) || (strchr(text, '|') != 0)) {
-        cout << "Error! Zapreshennie simvoli";
+        cout << "Error, nedopustimie simvoli v imeni faila";
         return 1;
     }
     if ((strchr(text, ':') != 0) &&
             (!(((strchr(text, ':') - text + 1) == 2) &&
                     (((strchr(text, '\\') - text + 1) == 3) ||
                             isalpha(1) != 0)))) {
-        cout << "Error! Necorrectnoe imya faila";
+        cout << "Error, necorrectnoe imya faila";
         return 1;
     }
-    char* lastDot = strrchr(text, '.');
+    char* last_point = strrchr(text, '.');
 
-    if (lastDot != 0) {
-        if (strcoll(lastDot, ".txt") != 0) {
+    if (last_point != 0) {
+        if (strcoll(last_point, ".txt") != 0) {
             strcat(text, ".txt");
         }
     }
@@ -253,34 +253,22 @@ main() {
         ifs.close();
 
         cout << "Enter a string to search for (up to 255 characters):" << endl;
-        char substr[256];
-        cin >> substr;
+        char search_str[256];
+        cin >> search_str;
 
         int count = 0;
         const char* tmp = file_content;
-        while (tmp = strstr(tmp, substr)) {
+        while (tmp == strstr(tmp, search_str)) {
             count++;
             tmp++;
         }
-        cout << "The string \"" << substr << "\" occures in the file " << text << " "
-                << count << " times." << endl;
+        cout << "The string \"" << search_str << "\" occures in the file " << text << " " << count << " times." << endl;
         delete[] file_content;
         delete[] tmp;
     }
-    delete[] lastDot;*/
+    delete[] last_point;
     return 0;
 }
-    /*fgets(text, MAX_SIZE, stdin);
-    const char* start = text;
-    while (true) {
-            const size_t separator_count = strspn(start, separators);
-            start += separator_count;
-            if (start[0] == '\0') {
-               break;
-           }
-            const size_t word_length = strcspn(start, separators);
-           cout.write(start, word_length);
-            cout << '\n';
-            start += word_length; */
+
 
 
