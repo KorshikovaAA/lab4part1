@@ -1,24 +1,19 @@
 #include <iostream>
-#include <fstream>
 #include <cassert>
-#include <iomanip>
 using namespace std;
 char nibble_to_hex(uint8_t i) {
     assert(0x0 <= i && i <= 0xf);
     char digits[] = "0123456789abcdef";
     return digits[i];
 }
-void
-print_in_hex(uint8_t byte) {
+void print_in_hex(uint8_t byte) {
     cout << nibble_to_hex(byte >> 4);
     cout << nibble_to_hex(byte & 0b00001111);
 }
-const uint8_t*
-as_bytes(const void* data) {
+const uint8_t*as_bytes(const void* data) {
     return reinterpret_cast<const uint8_t*>(data);
 }
-void
-print_in_hex(const void* data, size_t size) {
+void print_in_hex(const void* data, size_t size) {
     const uint8_t* bytes = as_bytes(data);
     for (size_t i = 0; i < size; i++) {
         print_in_hex(bytes[i]);
@@ -30,22 +25,19 @@ print_in_hex(const void* data, size_t size) {
         }
     }
 }
-char
-bit_digit(uint8_t byte, uint8_t bit) {
+char bit_digit(uint8_t byte, uint8_t bit) {
     if (byte & (0x1 << bit)) {
         return '1';
     }
     return '0';
 }
-void
-print_in_binary(uint8_t byte) {
+void print_in_binary(uint8_t byte) {
     for (uint8_t bit = 7; bit > 0; bit--) {
         cout << bit_digit(byte, bit);
     }
     cout << bit_digit (byte, 0);
 }
-void
-print_in_binary(const void* data, size_t size) {
+void print_in_binary(const void* data, size_t size) {
     const uint8_t* bytes = as_bytes(data);
     for (size_t i = 0; i < size; i++) {
         print_in_binary(bytes[i]);
@@ -57,17 +49,17 @@ print_in_binary(const void* data, size_t size) {
         }
     }
 }
-struct student{
+struct Student{
     char name[17];
     uint16_t year;
     float sred_ball;
     uint8_t sex;
     int classes;
-    student*starosta;
+    Student*starosta;
 };
 int
 main() {
-    /*assert(nibble_to_hex(0x0) == '0');
+    assert(nibble_to_hex(0x0) == '0');
     assert(nibble_to_hex(0x1) == '1');
     assert(nibble_to_hex(0x2) == '2');
     assert(nibble_to_hex(0x3) == '3');
@@ -139,9 +131,9 @@ main() {
 		 break;
      }
 
-    student students[3] = {
+    Student students[3] = {
             {
-                    "Tema", 2017, 4.1, 0, 7, nullptr
+                    "Tema", 2017, 4.1, 1, 7, nullptr
             },
             {
                     "Kristina", 2017, 4.2, 0, 7, &students[0]
@@ -159,23 +151,23 @@ main() {
     cout << "For first element of array:\n";
     cout << "\t\tAddress of field:" << "\t size of filed:" << "\t\toffset:\n";
     cout << "Name:    \t" << &students[0].name << "\t\t\t";
-    cout << sizeof(students[0].name) << "\t\t" << offsetof(struct student, name);
+    cout << sizeof(students[0].name) << "\t\t" << offsetof(struct Student, name);
     cout << '\n';
 
     cout << "Year:    \t" << &students[0].year << "\t\t\t";
-    cout << sizeof(students[0].year) << "\t\t" << offsetof(struct student, year);
+    cout << sizeof(students[0].year) << "\t\t" << offsetof(struct Student, year);
     cout << '\n';
 
     cout << "Sred_ball:\t" << &students[0].sred_ball << "\t\t\t";
-    cout << sizeof(students[0].sred_ball) << "\t\t"<< offsetof(struct student, sred_ball);
+    cout << sizeof(students[0].sred_ball) << "\t\t"<< offsetof(struct Student, sred_ball);
     cout << '\n';
 
     cout << "Classes:\t" << &students[0].classes << "\t\t\t";
-    cout << sizeof(students[0].classes) << "\t\t" << offsetof(struct student, classes);
+    cout << sizeof(students[0].classes) << "\t\t" << offsetof(struct Student, classes);
     cout << '\n';
 
     cout << "Starosta: \t" << &students[0].starosta << "\t\t\t";
-    cout << sizeof(students[0].starosta) << "\t\t"<< offsetof(struct student, starosta);
+    cout << sizeof(students[0].starosta) << "\t\t"<< offsetof(struct Student, starosta);
     cout << "\n";
 
     cout << "\n\n\n";
@@ -214,7 +206,7 @@ main() {
     cout << "\nHex:\n";
     print_in_hex(&students[0].starosta, sizeof(students[0].starosta));
     cout << "\n\n\n";
-*/
+
     const size_t MAX_SIZE = 256;
     const char* separators = " \r\n,.!?:;()-";
     char text[MAX_SIZE];
@@ -243,29 +235,26 @@ main() {
     else {
         strcat(text, ".rtf");
     }
-    ifstream ifs(text);
-    int FILE_LENGTH = 0;
-    if (ifs) {
-        ifs.seekg(0, ifs.end);
-        FILE_LENGTH = ifs.tellg();
-        ifs.seekg(0, ifs.beg);
-        char* file_content = new char[FILE_LENGTH];
-        ifs.read(file_content, FILE_LENGTH);
-        ifs.close();
-
-        cout << "Enter a string to search for (up to 255 characters):" << endl;
-        char search_str[256];
-        cin >> search_str;
-        int count = 0;
-        const char* tmp = file_content;
-        while (tmp = strstr(tmp, search_str)) {
-            count++;
-            tmp++;
-        }
-        cout << "The string \"" << search_str << "\" occures in the file " << text << " " << count << " times." << endl;
-        delete[] file_content;
-        delete[] tmp;
+    cout << text;
+    FILE* readingfile = fopen(text, "rb");
+    fseek(readingfile, 0, SEEK_END);
+    long size = ftell(readingfile);
+    rewind (readingfile);
+    cout <<endl<< "Razmer: " << size << " bytes" << endl;
+    char* dynmas = (char*)malloc(sizeof(char) * size);
+    size_t result = fread(dynmas, 1, size, readingfile);
+    puts(dynmas);
+    char string[256];
+    cout << "Vvedite stroky: ";
+    cin >> string;
+    int count=0;
+    const char *tmp = dynmas;
+    while(tmp = strstr(tmp, string)) {
+        count++;
+        tmp++;
     }
-    delete[] last_point;
+    cout<<"Kolichestvo vxodov v stroky: "<<count<<endl;
+    fclose(readingfile);
+    free(dynmas);
     return 0;
 }
